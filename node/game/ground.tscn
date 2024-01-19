@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://b73e3setp637y"]
+
+[ext_resource type="Texture2D" uid="uid://yt87icyn31ge" path="res://image/ground.png" id="1_bjdty"]
+[ext_resource type="Script" path="res://script/node/game/ground.gd" id="1_g5kst"]
+[ext_resource type="Texture2D" uid="uid://cscvhrjaxn8v0" path="res://image/ground_shadow.png" id="2_3mq84"]
+
+[node name="ground" type="StaticBody2D"]
+collision_layer = 7
+script = ExtResource("1_g5kst")
+
+[node name="sprite" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 152.0
+offset_bottom = 114.0
+metadata/_edit_use_anchors_ = true
+
+[node name="shadow" type="NinePatchRect" parent="sprite"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.105421
+anchor_top = 3.50768e-05
+anchor_right = 1.10484
+anchor_bottom = 1.10523
+offset_left = 0.0240002
+offset_top = -0.00399876
+offset_right = 0.0639954
+offset_bottom = 0.00399017
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3mq84")
+region_rect = Rect2(0, 0, 312, 232)
+patch_margin_left = 32
+patch_margin_top = 16
+patch_margin_right = 32
+patch_margin_bottom = 64
+metadata/_edit_use_anchors_ = true
+
+[node name="ground" type="NinePatchRect" parent="sprite"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_bjdty")
+region_rect = Rect2(0, 0, 280, 216)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 48
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -1.5)

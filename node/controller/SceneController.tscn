@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://3fom6gb802k7"]
+
+[ext_resource type="Shader" path="res://assets/shader/pixelating_transition.gdshader" id="1_s3fo2"]
+[ext_resource type="Script" path="res://script/controller/SceneController.gd" id="1_t20fe"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ch6du"]
+shader = ExtResource("1_s3fo2")
+shader_parameter/time = 0.0
+
+[sub_resource type="Animation" id="Animation_0rh6o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:material:shader_parameter/time")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_g81wd"]
+resource_name = "fading"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:material:shader_parameter/time")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.6]
+}
+
+[sub_resource type="Animation" id="Animation_1d0g2"]
+resource_name = "showing"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:material:shader_parameter/time")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.6, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g4bah"]
+_data = {
+"RESET": SubResource("Animation_0rh6o"),
+"fading": SubResource("Animation_g81wd"),
+"showing": SubResource("Animation_1d0g2")
+}
+
+[node name="transition" type="CanvasLayer"]
+layer = 128
+script = ExtResource("1_t20fe")
+
+[node name="Texture" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ch6du")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="player_transition" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g4bah")
+}

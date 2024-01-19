@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7eiyli201khu"]
+
+[ext_resource type="Script" path="res://script/node/game/fence.gd" id="1_xlop6"]
+[ext_resource type="Texture2D" uid="uid://dcpbbnddcfiyc" path="res://image/fence.png" id="2_d4dlx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1bl5"]
+size = Vector2(66, 40)
+
+[node name="fence" type="StaticBody2D"]
+collision_layer = 2
+script = ExtResource("1_xlop6")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 5.96046e-07)
+texture = ExtResource("2_d4dlx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_t1bl5")

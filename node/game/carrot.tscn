@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://buxm4orl60v1l"]
+
+[ext_resource type="Script" path="res://script/node/game/carrot.gd" id="1_ii75j"]
+[ext_resource type="SpriteFrames" uid="uid://bj8j6ldcskhhw" path="res://assets/animated/rabbit_item_animated.tres" id="2_arjgp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjo25"]
+size = Vector2(24, 38)
+
+[node name="carrot" type="Area2D"]
+script = ExtResource("1_ii75j")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 13)
+sprite_frames = ExtResource("2_arjgp")
+animation = &"rabbit_carrot"
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sjo25")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

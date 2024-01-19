@@ -1,0 +1,588 @@
+[gd_scene load_steps=32 format=3 uid="uid://5esktcqsoo1t"]
+
+[ext_resource type="Script" path="res://script/scene/game.gd" id="1_7dw7q"]
+[ext_resource type="Script" path="res://script/component/swipedetector.gd" id="2_7b01q"]
+[ext_resource type="PackedScene" uid="uid://7q66aipge1y0" path="res://node/game/content.tscn" id="2_boagn"]
+[ext_resource type="Texture2D" uid="uid://daj3dwn382fkh" path="res://image/splash_screen.png" id="2_og1th"]
+[ext_resource type="PackedScene" uid="uid://wcghgq5lqefe" path="res://node/game/rabbit.tscn" id="3_5nga5"]
+[ext_resource type="Texture2D" uid="uid://peko62kx0dtr" path="res://image/land.png" id="3_a7c1v"]
+[ext_resource type="Script" path="res://script/node/game/scrolling.gd" id="3_foayp"]
+[ext_resource type="Script" path="res://script/node/game/rabbits.gd" id="6_rvwjg"]
+[ext_resource type="Texture2D" uid="uid://dt8gl74xupw33" path="res://image/ui/information_panel.png" id="8_dmawk"]
+[ext_resource type="Texture2D" uid="uid://hnx7ynudx0w0" path="res://image/ui/icon.png" id="8_fv2ft"]
+[ext_resource type="Script" path="res://script/node/game/ui.gd" id="8_ypnvk"]
+[ext_resource type="FontFile" uid="uid://deeij8pwn58ag" path="res://assets/font/Minecraft.ttf" id="9_ayeb4"]
+[ext_resource type="AudioStream" uid="uid://bre1170hngl5b" path="res://sound/soundtrack/game_soundtrack_placeholder.ogg" id="9_x6fvc"]
+[ext_resource type="LabelSettings" uid="uid://di5yas8wu8vg7" path="res://assets/settings/label_settings_ui_count.tres" id="10_hrt5m"]
+[ext_resource type="Texture2D" uid="uid://dcki8h2q85tik" path="res://image/ui/btn_normal.png" id="10_iuf4o"]
+[ext_resource type="Texture2D" uid="uid://chl4dsavg8gfq" path="res://image/ui/btn_pressed.png" id="11_faijh"]
+[ext_resource type="Texture2D" uid="uid://cu447qa2qayhk" path="res://image/ui/btn_focus.png" id="12_yyonu"]
+[ext_resource type="Texture2D" uid="uid://4535ciqa536g" path="res://image/ui/icon_back_n.png" id="13_s44tx"]
+[ext_resource type="Texture2D" uid="uid://b242r2m6mfki7" path="res://image/ui/icon_back_p.png" id="14_m1pl0"]
+[ext_resource type="Texture2D" uid="uid://bb6kq8vuybb64" path="res://image/ui/panel.png" id="15_nuqdi"]
+[ext_resource type="Texture2D" uid="uid://ep2nrcigprxm" path="res://image/ui/icon_volume_1_n.png" id="16_qoef8"]
+[ext_resource type="Texture2D" uid="uid://clp7mbf8a5jbt" path="res://image/ui/icon_volume_1_p.png" id="17_djjmc"]
+[ext_resource type="Texture2D" uid="uid://cnpiwact8l5vo" path="res://image/ui/pause-image.png" id="19_rrvfw"]
+[ext_resource type="Texture2D" uid="uid://bg75ck8ksqhhw" path="res://image/ui/panel-button-n.png" id="21_ir16v"]
+[ext_resource type="LabelSettings" uid="uid://depeof8uskgvr" path="res://assets/settings/label_settings_information_label.tres" id="21_n2d1q"]
+[ext_resource type="Texture2D" uid="uid://bhge0dsjcrrlw" path="res://image/ui/panel-button-p.png" id="22_awdae"]
+[ext_resource type="LabelSettings" uid="uid://fpvy6tioq7i1" path="res://assets/settings/label_settings_information_value.tres" id="22_ydhek"]
+[ext_resource type="Texture2D" uid="uid://bl57p4d7mwcjd" path="res://image/ui/panel-button-f.png" id="23_8te0v"]
+[ext_resource type="AudioStream" uid="uid://bey7rbeuheyfo" path="res://sound/sfx/button0.ogg" id="29_h3erd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bmrdk"]
+size = Vector2(380, 763)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k5eab"]
+line_spacing = 2.0
+font = ExtResource("9_ayeb4")
+font_size = 18
+font_color = Color(0.521569, 0.745098, 0.568627, 1)
+outline_size = 10
+outline_color = Color(0.270588, 0.156863, 0.235294, 1)
+shadow_color = Color(0.231373, 0.368627, 0.423529, 1)
+shadow_offset = Vector2(3, 3)
+
+[node name="game" type="Node2D"]
+script = ExtResource("1_7dw7q")
+fence_level_change = 4
+fence_value_change = 2
+scrolling_value_max = 20.0
+
+[node name="scene" type="Node2D" parent="."]
+position = Vector2(182, 374)
+
+[node name="splashscreen" type="Sprite2D" parent="scene"]
+texture = ExtResource("2_og1th")
+
+[node name="land" type="Sprite2D" parent="scene"]
+texture = ExtResource("3_a7c1v")
+
+[node name="scrolling" type="Node2D" parent="scene"]
+script = ExtResource("3_foayp")
+content_height = 1400.0
+
+[node name="groups" type="Node2D" parent="scene/scrolling"]
+y_sort_enabled = true
+
+[node name="content" parent="scene/scrolling/groups" instance=ExtResource("2_boagn")]
+y_sort_enabled = true
+position = Vector2(0, -200)
+
+[node name="content2" parent="scene/scrolling/groups" instance=ExtResource("2_boagn")]
+y_sort_enabled = true
+position = Vector2(0, 1200)
+
+[node name="area" type="Area2D" parent="scene/scrolling"]
+
+[node name="rect" type="CollisionShape2D" parent="scene/scrolling/area"]
+position = Vector2(1, -17.5)
+shape = SubResource("RectangleShape2D_bmrdk")
+debug_color = Color(0, 0.6, 0.701961, 0.0588235)
+
+[node name="rabbits" type="Node2D" parent="scene"]
+y_sort_enabled = true
+script = ExtResource("6_rvwjg")
+delegate = ExtResource("3_5nga5")
+models = [null]
+
+[node name="spawn" type="Marker2D" parent="scene/rabbits"]
+position = Vector2(0, -379)
+
+[node name="point" type="Marker2D" parent="scene"]
+position = Vector2(0, 156)
+
+[node name="level_timer" type="Timer" parent="scene"]
+wait_time = 2.6
+autostart = true
+
+[node name="scoring_timer" type="Timer" parent="scene"]
+wait_time = 3.0
+autostart = true
+
+[node name="sound" type="AudioStreamPlayer" parent="scene"]
+process_mode = 3
+stream = ExtResource("9_x6fvc")
+autoplay = true
+
+[node name="sfx" type="AudioStreamPlayer" parent="scene"]
+stream = ExtResource("29_h3erd")
+
+[node name="camera" type="Camera2D" parent="."]
+position = Vector2(182, 374)
+script = ExtResource("2_7b01q")
+threshold = 80
+
+[node name="ui" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("8_ypnvk")
+
+[node name="count" type="Control" parent="ui"]
+layout_mode = 3
+anchor_left = 0.805
+anchor_top = 0.006
+anchor_right = 1.0
+anchor_bottom = 0.006
+offset_left = -96.8
+offset_top = 0.16
+offset_right = -70.0
+offset_bottom = 40.16
+scale = Vector2(0.996844, 1)
+
+[node name="panel" type="NinePatchRect" parent="ui/count"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_dmawk")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 10
+patch_margin_bottom = 18
+
+[node name="content" type="Control" parent="ui/count"]
+layout_mode = 1
+anchor_left = 0.0784316
+anchor_top = 0.101507
+anchor_right = 0.914872
+anchor_bottom = 0.840449
+offset_top = -0.00399971
+offset_right = 0.0249939
+offset_bottom = 0.00900269
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="image" type="TextureRect" parent="ui/count/content"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+offset_top = 1.0
+offset_right = 24.0
+offset_bottom = 25.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_fv2ft")
+
+[node name="label" type="Label" parent="ui/count/content"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+anchor_left = 0.444
+anchor_top = 0.157
+anchor_right = 0.998
+anchor_bottom = 0.786
+offset_left = -0.0349236
+offset_top = 1.00936
+offset_right = 0.00259399
+offset_bottom = 2.4094
+size_flags_horizontal = 3
+text = "123"
+label_settings = ExtResource("10_hrt5m")
+horizontal_alignment = 2
+uppercase = true
+
+[node name="score" type="Control" parent="ui"]
+layout_mode = 3
+anchor_top = 0.006
+anchor_right = 0.194
+anchor_bottom = 0.006
+offset_left = 70.0
+offset_top = 0.16
+offset_right = 91.16
+offset_bottom = 39.16
+
+[node name="panel" type="NinePatchRect" parent="ui/score"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_dmawk")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 10
+patch_margin_bottom = 18
+
+[node name="label" type="Label" parent="ui/score/panel"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0853659
+anchor_top = 0.232558
+anchor_right = 0.914634
+anchor_bottom = 0.744186
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "1"
+label_settings = ExtResource("10_hrt5m")
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+
+[node name="back" type="TextureButton" parent="ui"]
+offset_top = 3.0
+offset_right = 62.0
+offset_bottom = 61.0
+texture_normal = ExtResource("10_iuf4o")
+texture_pressed = ExtResource("11_faijh")
+texture_hover = ExtResource("12_yyonu")
+stretch_mode = 0
+
+[node name="icon" type="TextureButton" parent="ui/back"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.0344828
+anchor_right = 1.03226
+anchor_bottom = 1.06897
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture_normal = ExtResource("13_s44tx")
+texture_pressed = ExtResource("14_m1pl0")
+texture_hover = ExtResource("14_m1pl0")
+
+[node name="sound" type="TextureButton" parent="ui"]
+anchors_preset = -1
+anchor_left = 0.994
+anchor_top = 0.005
+anchor_right = 0.994
+anchor_bottom = 0.005
+offset_left = -61.84
+offset_top = -0.2
+offset_right = 0.160004
+offset_bottom = 57.8
+texture_normal = ExtResource("10_iuf4o")
+texture_pressed = ExtResource("11_faijh")
+texture_hover = ExtResource("12_yyonu")
+
+[node name="icon" type="TextureButton" parent="ui/sound"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.0344828
+anchor_right = 1.03226
+anchor_bottom = 1.06897
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture_normal = ExtResource("16_qoef8")
+texture_pressed = ExtResource("17_djjmc")
+texture_hover = ExtResource("17_djjmc")
+
+[node name="popup" type="Control" parent="ui"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="panel" type="NinePatchRect" parent="ui/popup"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.322
+anchor_top = 0.323438
+anchor_right = 0.747
+anchor_bottom = 0.323438
+offset_left = -97.92
+offset_right = 75.0798
+offset_bottom = 183.999
+texture = ExtResource("15_nuqdi")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 10
+patch_margin_bottom = 18
+metadata/_edit_use_anchors_ = true
+
+[node name="list" type="VBoxContainer" parent="ui/popup/panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0294906
+anchor_top = 0.0973451
+anchor_right = 0.970767
+anchor_bottom = 0.596965
+offset_right = -0.0960083
+offset_bottom = 0.0859833
+metadata/_edit_use_anchors_ = true
+
+[node name="time" type="HBoxContainer" parent="ui/popup/panel/list"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="label" type="Label" parent="ui/popup/panel/list/time"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Time:"
+label_settings = ExtResource("21_n2d1q")
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="value" type="Label" parent="ui/popup/panel/list/time"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.43
+text = "000000"
+label_settings = ExtResource("22_ydhek")
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="distant" type="HBoxContainer" parent="ui/popup/panel/list"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="label" type="Label" parent="ui/popup/panel/list/distant"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Distant:"
+label_settings = ExtResource("21_n2d1q")
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="value" type="Label" parent="ui/popup/panel/list/distant"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.43
+text = "000000"
+label_settings = ExtResource("22_ydhek")
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="rabbits" type="HBoxContainer" parent="ui/popup/panel/list"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="label" type="Label" parent="ui/popup/panel/list/rabbits"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "HIGHEST RABBITS:"
+label_settings = ExtResource("21_n2d1q")
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="value" type="Label" parent="ui/popup/panel/list/rabbits"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.43
+text = "000000"
+label_settings = ExtResource("22_ydhek")
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="scores" type="VBoxContainer" parent="ui/popup/panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.393641
+anchor_top = 0.600442
+anchor_right = 0.966727
+anchor_bottom = 0.87593
+offset_right = 0.17395
+offset_bottom = -0.0780334
+metadata/_edit_use_anchors_ = true
+
+[node name="score" type="HBoxContainer" parent="ui/popup/panel/scores"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="label" type="Label" parent="ui/popup/panel/scores/score"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Score:"
+label_settings = ExtResource("21_n2d1q")
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="value" type="Label" parent="ui/popup/panel/scores/score"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.43
+text = "000000"
+label_settings = ExtResource("22_ydhek")
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="highscore" type="HBoxContainer" parent="ui/popup/panel/scores"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="label" type="Label" parent="ui/popup/panel/scores/highscore"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "High Score:"
+label_settings = ExtResource("21_n2d1q")
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="value" type="Label" parent="ui/popup/panel/scores/highscore"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.43
+text = "000000"
+label_settings = ExtResource("22_ydhek")
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="image" type="TextureRect" parent="ui/popup"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.103
+anchor_top = 0.02
+anchor_right = 0.897
+anchor_bottom = 0.02
+offset_left = -0.0800018
+offset_top = 0.199999
+offset_right = 0.0799866
+offset_bottom = 251.2
+texture = ExtResource("19_rrvfw")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="button" type="HBoxContainer" parent="ui/popup"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.425
+anchor_top = 0.61875
+anchor_right = 0.655
+anchor_bottom = 0.619
+offset_left = -153.12
+offset_right = 124.32
+offset_bottom = 71.84
+theme_override_constants/separation = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="quit" type="TextureButton" parent="ui/popup/button"]
+layout_mode = 2
+size_flags_horizontal = 2
+texture_normal = ExtResource("21_ir16v")
+texture_pressed = ExtResource("22_awdae")
+texture_hover = ExtResource("23_8te0v")
+
+[node name="label" type="Label" parent="ui/popup/button/quit"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.076
+anchor_top = 0.087
+anchor_right = 0.931
+anchor_bottom = 0.846
+offset_left = 0.0559998
+offset_top = -0.0480003
+offset_right = -0.0640106
+offset_bottom = 0.0159988
+grow_horizontal = 2
+grow_vertical = 2
+text = "QUIT"
+label_settings = SubResource("LabelSettings_k5eab")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="retry" type="TextureButton" parent="ui/popup/button"]
+layout_mode = 2
+size_flags_horizontal = 10
+texture_normal = ExtResource("21_ir16v")
+texture_pressed = ExtResource("22_awdae")
+texture_hover = ExtResource("23_8te0v")
+
+[node name="label" type="Label" parent="ui/popup/button/retry"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.076
+anchor_top = 0.087
+anchor_right = 0.931
+anchor_bottom = 0.846
+offset_left = 0.0559998
+offset_top = -0.0480003
+offset_right = -0.0640106
+offset_bottom = 0.0159988
+grow_horizontal = 2
+grow_vertical = 2
+text = "RETRY"
+label_settings = SubResource("LabelSettings_k5eab")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="cancel" type="TextureButton" parent="ui/popup/button"]
+layout_mode = 2
+size_flags_horizontal = 10
+texture_normal = ExtResource("21_ir16v")
+texture_pressed = ExtResource("22_awdae")
+texture_hover = ExtResource("23_8te0v")
+
+[node name="label" type="Label" parent="ui/popup/button/cancel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.076
+anchor_top = 0.087
+anchor_right = 0.931
+anchor_bottom = 0.846
+offset_left = 0.0559998
+offset_top = -0.0480003
+offset_right = -0.0640106
+offset_bottom = 0.0159988
+grow_horizontal = 2
+grow_vertical = 2
+text = "CANCEL"
+label_settings = SubResource("LabelSettings_k5eab")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sfx" type="AudioStreamPlayer" parent="ui"]
+stream = ExtResource("29_h3erd")
+
+[connection signal="rabbit_collide" from="scene/scrolling" to="." method="_on_scrolling_rabbit_collide"]
+[connection signal="rabbit_out_of_zone" from="scene/scrolling" to="." method="_on_scrolling_rabbit_out_of_zone"]
+[connection signal="rabbit_collide" from="scene/scrolling/groups/content" to="scene/scrolling" method="_on_content_rabbit_collide"]
+[connection signal="rabbit_collide" from="scene/scrolling/groups/content2" to="scene/scrolling" method="_on_content_rabbit_collide"]
+[connection signal="body_exited" from="scene/scrolling/area" to="scene/scrolling" method="_on_area_body_exited"]
+[connection signal="spawned" from="scene/rabbits" to="scene/rabbits" method="_on_spawned"]
+[connection signal="updated" from="scene/rabbits" to="." method="_on_rabbits_updated"]
+[connection signal="timeout" from="scene/level_timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="scene/scoring_timer" to="." method="_on_scoring_timer_timeout"]
+[connection signal="button_pressed" from="ui" to="." method="_on_ui_button_pressed"]
+[connection signal="pressed" from="ui/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="ui/back" to="ui" method="_on_back_pressed"]
+[connection signal="pressed" from="ui/sound" to="ui" method="_on_sound_pressed"]
+[connection signal="pressed" from="ui/popup/button/quit" to="ui" method="_on_quit_pressed"]
+[connection signal="pressed" from="ui/popup/button/retry" to="ui" method="_on_retry_pressed"]
+[connection signal="pressed" from="ui/popup/button/cancel" to="ui" method="_on_cancel_pressed"]

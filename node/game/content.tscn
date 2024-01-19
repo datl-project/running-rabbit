@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://7q66aipge1y0"]
+
+[ext_resource type="Script" path="res://script/node/game/content.gd" id="1_6fsof"]
+[ext_resource type="Script" path="res://script/node/game/grounds.gd" id="2_dxs2v"]
+[ext_resource type="Script" path="res://script/node/game/fences.gd" id="3_ksjb6"]
+[ext_resource type="PackedScene" uid="uid://b73e3setp637y" path="res://node/game/ground.tscn" id="3_nkkr2"]
+[ext_resource type="PackedScene" uid="uid://b7eiyli201khu" path="res://node/game/fence.tscn" id="4_i0n8b"]
+[ext_resource type="Script" path="res://script/node/game/carrots.gd" id="6_odjvq"]
+[ext_resource type="PackedScene" uid="uid://buxm4orl60v1l" path="res://node/game/carrot.tscn" id="7_kj05e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yg7cn"]
+size = Vector2(238, 1400)
+
+[node name="content" type="Node2D"]
+script = ExtResource("1_6fsof")
+
+[node name="lands" type="Node2D" parent="."]
+position = Vector2(0, -700)
+
+[node name="left" type="Node2D" parent="lands"]
+position = Vector2(-550, 0)
+script = ExtResource("2_dxs2v")
+minimumWidth = 397
+maximumWidth = 437
+minimumHeight = 220
+maximumHeight = 280
+heightRange = 1400
+delegate = ExtResource("3_nkkr2")
+
+[node name="right" type="Node2D" parent="lands"]
+position = Vector2(550, 0)
+script = ExtResource("2_dxs2v")
+minimumWidth = 397
+maximumWidth = 437
+heightRange = 1400
+align = 1
+delegate = ExtResource("3_nkkr2")
+
+[node name="fences" type="Node2D" parent="."]
+y_sort_enabled = true
+script = ExtResource("3_ksjb6")
+delegate = ExtResource("4_i0n8b")
+
+[node name="carrots" type="Node2D" parent="."]
+y_sort_enabled = true
+script = ExtResource("6_odjvq")
+delegate = ExtResource("7_kj05e")
+
+[node name="check" type="RayCast2D" parent="."]
+collision_mask = 4
+
+[node name="contentarea" type="Area2D" parent="."]
+collision_layer = 32768
+collision_mask = 32768
+
+[node name="rect" type="CollisionShape2D" parent="contentarea"]
+shape = SubResource("RectangleShape2D_yg7cn")
+disabled = true
+
+[connection signal="pooling_node" from="fences" to="." method="_on_fences_pooling_node"]
+[connection signal="pooling_node" from="carrots" to="." method="_on_carrots_pooling_node"]

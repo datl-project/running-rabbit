@@ -1,0 +1,88 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxfugny3cv655"]
+
+[ext_resource type="Script" path="res://script/scene/debug.gd" id="1_i655y"]
+
+[node name="debug" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i655y")
+
+[node name="show_leaderboard" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.111
+anchor_top = 0.0640625
+anchor_right = 0.813556
+anchor_bottom = 0.162
+offset_left = 0.04
+offset_top = -1.00001
+offset_right = 0.12
+offset_bottom = -0.680008
+text = "show leaderboard"
+metadata/_edit_use_anchors_ = true
+
+[node name="submit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.111
+anchor_top = 0.189063
+anchor_right = 0.813556
+anchor_bottom = 0.287
+offset_left = 0.04
+offset_top = -1.00001
+offset_right = 0.12
+offset_bottom = -0.680008
+text = "Submit Score"
+metadata/_edit_use_anchors_ = true
+
+[node name="update_leaderboard" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.111
+anchor_top = 0.314063
+anchor_right = 0.813556
+anchor_bottom = 0.412
+offset_left = 0.04
+offset_top = -1.00001
+offset_right = 0.12
+offset_bottom = -0.680008
+text = "Update Leaderboard"
+metadata/_edit_use_anchors_ = true
+
+[node name="update_playerscore" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.111
+anchor_top = 0.439063
+anchor_right = 0.813556
+anchor_bottom = 0.537
+offset_left = 0.0400009
+offset_top = -1.00001
+offset_right = 0.119995
+offset_bottom = -0.680008
+text = "Update Player Score"
+metadata/_edit_use_anchors_ = true
+
+[node name="show_all_leaderboard" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.111
+anchor_top = 0.553125
+anchor_right = 0.813556
+anchor_bottom = 0.651063
+offset_left = 0.0400009
+offset_top = -1.00001
+offset_right = 0.119995
+offset_bottom = -0.680008
+text = "Show All Leaderboard"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="show_leaderboard" to="." method="_on_show_leaderboard_pressed"]
+[connection signal="pressed" from="submit" to="." method="_on_submit_pressed"]
+[connection signal="pressed" from="update_leaderboard" to="." method="_on_update_leaderboard_pressed"]
+[connection signal="pressed" from="update_playerscore" to="." method="_on_update_playerscore_pressed"]
+[connection signal="pressed" from="show_all_leaderboard" to="." method="_on_show_all_leaderboard_pressed"]

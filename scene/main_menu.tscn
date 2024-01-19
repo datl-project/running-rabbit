@@ -1,0 +1,499 @@
+[gd_scene load_steps=27 format=3 uid="uid://cajcq7tx51xco"]
+
+[ext_resource type="Script" path="res://script/scene/main_menu.gd" id="1_wyfwe"]
+[ext_resource type="PackedScene" uid="uid://bm5hxvkp06y4f" path="res://node/main_menu/background.tscn" id="2_orr25"]
+[ext_resource type="AudioStream" uid="uid://c23s041utfjqh" path="res://sound/soundtrack/main_menu_soundtrack_placeholder.ogg" id="3_1udc5"]
+[ext_resource type="Texture2D" uid="uid://dnnat1g3mkj3a" path="res://image/title.png" id="3_h24cr"]
+[ext_resource type="FontFile" uid="uid://deeij8pwn58ag" path="res://assets/font/Minecraft.ttf" id="4_pnc7t"]
+[ext_resource type="Texture2D" uid="uid://j5fnjqqt73ro" path="res://image/ui/icon_setting_n.png" id="6_4ghlp"]
+[ext_resource type="Texture2D" uid="uid://dmj2p6twdcobf" path="res://image/ui/icon_setting_p.png" id="7_wv0ss"]
+[ext_resource type="Texture2D" uid="uid://osjswisda7e6" path="res://image/ui/icon_score_n.png" id="8_bx43c"]
+[ext_resource type="LabelSettings" uid="uid://dt5sijb0lrgft" path="res://assets/settings/label_settings_ui_main_button.tres" id="8_lguh0"]
+[ext_resource type="Texture2D" uid="uid://bdfeg576xww1s" path="res://image/ui/icon_score_p.png" id="8_ulfwo"]
+[ext_resource type="AudioStream" uid="uid://bey7rbeuheyfo" path="res://sound/sfx/button0.ogg" id="11_0g5xj"]
+[ext_resource type="Texture2D" uid="uid://bb6kq8vuybb64" path="res://image/ui/panel.png" id="11_7tk18"]
+[ext_resource type="LabelSettings" uid="uid://depeof8uskgvr" path="res://assets/settings/label_settings_information_label.tres" id="12_uggu5"]
+[ext_resource type="Texture2D" uid="uid://bg75ck8ksqhhw" path="res://image/ui/panel-button-n.png" id="14_e7p5v"]
+[ext_resource type="Texture2D" uid="uid://bhge0dsjcrrlw" path="res://image/ui/panel-button-p.png" id="15_24ikn"]
+[ext_resource type="Texture2D" uid="uid://bl57p4d7mwcjd" path="res://image/ui/panel-button-f.png" id="16_sio0q"]
+[ext_resource type="Texture2D" uid="uid://dxh6q7l0tkd2s" path="res://image/ui/icon_volume_small_1_n.png" id="18_y46q0"]
+[ext_resource type="Texture2D" uid="uid://c2gdhce5v5b4a" path="res://image/ui/icon_volume_small_1_p.png" id="19_o6c4r"]
+[ext_resource type="Texture2D" uid="uid://ixoj7rphmb5a" path="res://image/ui/icon_volume_small_1_f.png" id="20_6avgh"]
+[ext_resource type="PackedScene" uid="uid://cekayxi6xp5t4" path="res://node/main_menu/textbutton.tscn" id="21_12k77"]
+[ext_resource type="Texture2D" uid="uid://b0tsrxgqhcud6" path="res://image/ui/title_settings.png" id="21_imlgf"]
+[ext_resource type="Texture2D" uid="uid://bhjaw8i8mdh4g" path="res://image/ui/title_app_infor.png" id="24_80bl7"]
+[ext_resource type="Texture2D" uid="uid://0su0qs27y80g" path="res://image/splash/splash_text.png" id="24_navvo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hrj7j"]
+line_spacing = 2.0
+font = ExtResource("4_pnc7t")
+font_size = 50
+font_color = Color(0.756863, 0.984314, 0.580392, 1)
+outline_size = 12
+outline_color = Color(0.270588, 0.156863, 0.235294, 1)
+shadow_size = 10
+shadow_color = Color(0.231373, 0.368627, 0.423529, 1)
+shadow_offset = Vector2(0, 6)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xdptb"]
+line_spacing = 2.0
+font = ExtResource("4_pnc7t")
+font_size = 18
+font_color = Color(0.521569, 0.745098, 0.568627, 1)
+outline_size = 10
+outline_color = Color(0.270588, 0.156863, 0.235294, 1)
+shadow_color = Color(0.231373, 0.368627, 0.423529, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s82sh"]
+atlas = ExtResource("24_navvo")
+region = Rect2(744, 0, 248, 120)
+
+[node name="main_menu" type="Node2D"]
+script = ExtResource("1_wyfwe")
+
+[node name="background" parent="." instance=ExtResource("2_orr25")]
+
+[node name="sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_1udc5")
+autoplay = true
+
+[node name="camera" type="Camera2D" parent="."]
+position = Vector2(179, 320)
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="menu" type="Control" parent="ui"]
+use_parent_material = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title" type="TextureRect" parent="ui/menu"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.525
+anchor_top = 0.087
+anchor_right = 0.525
+anchor_bottom = 0.087
+offset_left = -149.0
+offset_top = 0.319996
+offset_right = 149.0
+offset_bottom = 224.32
+mouse_filter = 2
+texture = ExtResource("3_h24cr")
+stretch_mode = 5
+
+[node name="text" type="Label" parent="ui/menu/title"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.47
+anchor_top = 0.821
+anchor_right = 0.47
+anchor_bottom = 0.821
+offset_left = -172.06
+offset_top = 0.095993
+offset_right = 171.94
+offset_bottom = 104.096
+text = "RUNNING RABBIT
+"
+label_settings = SubResource("LabelSettings_hrj7j")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="label" type="Label" parent="ui/menu"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.111444
+anchor_top = 0.512
+anchor_right = 0.911556
+anchor_bottom = 0.762
+offset_left = -0.12001
+offset_top = -7.68002
+offset_right = -0.160004
+offset_bottom = 0.319977
+grow_horizontal = 2
+grow_vertical = 2
+text = "PRESSED TO PLAY"
+label_settings = ExtResource("8_lguh0")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="setting" type="TextureButton" parent="ui"]
+use_parent_material = true
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("6_4ghlp")
+texture_pressed = ExtResource("7_wv0ss")
+texture_hover = ExtResource("7_wv0ss")
+
+[node name="scores" type="TextureButton" parent="ui"]
+use_parent_material = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_bottom = 64.0
+grow_horizontal = 0
+texture_normal = ExtResource("8_bx43c")
+texture_pressed = ExtResource("8_ulfwo")
+texture_hover = ExtResource("8_ulfwo")
+
+[node name="sfx" type="AudioStreamPlayer" parent="ui"]
+stream = ExtResource("11_0g5xj")
+
+[node name="settings" type="NinePatchRect" parent="ui"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.489
+anchor_top = 0.360938
+anchor_right = 0.489
+anchor_bottom = 0.362
+offset_left = -158.04
+offset_right = 167.96
+offset_bottom = 183.32
+texture = ExtResource("11_7tk18")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 10
+patch_margin_bottom = 18
+metadata/_edit_use_anchors_ = true
+
+[node name="title" type="TextureRect" parent="ui/settings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.313
+anchor_top = -0.342
+anchor_right = 0.755
+anchor_bottom = -0.342
+offset_left = -40.0379
+offset_top = -16.0726
+offset_right = 3.87012
+offset_bottom = 63.9274
+texture = ExtResource("21_imlgf")
+
+[node name="button" type="HBoxContainer" parent="ui/settings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00277778
+anchor_top = 1.05353
+anchor_right = 0.991111
+anchor_bottom = 1.44332
+offset_right = 0.19989
+offset_bottom = 0.279968
+theme_override_constants/separation = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="about" type="TextureButton" parent="ui/settings/button"]
+layout_mode = 2
+size_flags_horizontal = 2
+texture_normal = ExtResource("14_e7p5v")
+texture_pressed = ExtResource("15_24ikn")
+texture_hover = ExtResource("16_sio0q")
+
+[node name="label" type="Label" parent="ui/settings/button/about"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.076
+anchor_top = 0.087
+anchor_right = 0.931
+anchor_bottom = 0.846
+offset_left = 0.0559998
+offset_top = -0.0480003
+offset_right = -0.0640106
+offset_bottom = 0.0159988
+grow_horizontal = 2
+grow_vertical = 2
+text = "ABOUT"
+label_settings = SubResource("LabelSettings_xdptb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="close" type="TextureButton" parent="ui/settings/button"]
+layout_mode = 2
+size_flags_horizontal = 10
+texture_normal = ExtResource("14_e7p5v")
+texture_pressed = ExtResource("15_24ikn")
+texture_hover = ExtResource("16_sio0q")
+
+[node name="label" type="Label" parent="ui/settings/button/close"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.076
+anchor_top = 0.087
+anchor_right = 0.931
+anchor_bottom = 0.846
+offset_left = 0.0559998
+offset_top = -0.0480003
+offset_right = -0.0640106
+offset_bottom = 0.0159988
+grow_horizontal = 2
+grow_vertical = 2
+text = "CLOSE"
+label_settings = SubResource("LabelSettings_xdptb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="list" type="VBoxContainer" parent="ui/settings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0736197
+anchor_top = 0.0978264
+anchor_right = 0.926675
+anchor_bottom = 0.874536
+offset_right = -0.0960083
+offset_bottom = 0.0859833
+theme_override_constants/separation = -4
+metadata/_edit_use_anchors_ = true
+
+[node name="sound" type="HBoxContainer" parent="ui/settings/list"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="label" type="Label" parent="ui/settings/list/sound"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.3
+text = "MUSIC:"
+label_settings = ExtResource("12_uggu5")
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="button" type="TextureButton" parent="ui/settings/list/sound"]
+layout_mode = 2
+size_flags_horizontal = 2
+texture_normal = ExtResource("18_y46q0")
+texture_pressed = ExtResource("19_o6c4r")
+texture_hover = ExtResource("20_6avgh")
+
+[node name="sfx" type="HBoxContainer" parent="ui/settings/list/sound"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="label" type="Label" parent="ui/settings/list/sound/sfx"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.3
+text = "SFX:"
+label_settings = ExtResource("12_uggu5")
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="button" type="TextureButton" parent="ui/settings/list/sound/sfx"]
+layout_mode = 2
+size_flags_horizontal = 2
+texture_normal = ExtResource("18_y46q0")
+texture_pressed = ExtResource("19_o6c4r")
+texture_hover = ExtResource("20_6avgh")
+stretch_mode = 5
+
+[node name="control" type="HBoxContainer" parent="ui/settings/list"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_constants/separation = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="label" type="Label" parent="ui/settings/list/control"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+text = "Control:"
+label_settings = ExtResource("12_uggu5")
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="textbutton" parent="ui/settings/list/control" instance=ExtResource("21_12k77")]
+layout_mode = 2
+
+[node name="brightness" type="HBoxContainer" parent="ui/settings/list"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_constants/separation = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="label" type="Label" parent="ui/settings/list/brightness"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+text = "Brightness:"
+label_settings = ExtResource("12_uggu5")
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="textbutton" parent="ui/settings/list/brightness" instance=ExtResource("21_12k77")]
+layout_mode = 2
+
+[node name="appinfo" type="NinePatchRect" parent="ui"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.489
+anchor_top = 0.360938
+anchor_right = 0.489
+anchor_bottom = 0.362
+offset_left = -158.04
+offset_right = 167.96
+offset_bottom = 183.32
+texture = ExtResource("11_7tk18")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 10
+patch_margin_bottom = 18
+metadata/_edit_use_anchors_ = true
+
+[node name="title" type="TextureRect" parent="ui/appinfo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.313
+anchor_top = -0.342
+anchor_right = 0.755
+anchor_bottom = -0.342
+offset_left = -48.038
+offset_top = -16.0724
+offset_right = 27.87
+offset_bottom = 63.9276
+texture = ExtResource("24_80bl7")
+
+[node name="button" type="HBoxContainer" parent="ui/appinfo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00277778
+anchor_top = 1.05353
+anchor_right = 0.991111
+anchor_bottom = 1.44332
+offset_right = 0.19989
+offset_bottom = 0.279968
+theme_override_constants/separation = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="close" type="TextureButton" parent="ui/appinfo/button"]
+layout_mode = 2
+size_flags_horizontal = 10
+texture_normal = ExtResource("14_e7p5v")
+texture_pressed = ExtResource("15_24ikn")
+texture_hover = ExtResource("16_sio0q")
+
+[node name="label" type="Label" parent="ui/appinfo/button/close"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.076
+anchor_top = 0.087
+anchor_right = 0.931
+anchor_bottom = 0.846
+offset_left = 0.0559998
+offset_top = -0.0480003
+offset_right = -0.0640106
+offset_bottom = 0.0159988
+grow_horizontal = 2
+grow_vertical = 2
+text = "CLOSE"
+label_settings = SubResource("LabelSettings_xdptb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="list" type="Control" parent="ui/appinfo"]
+layout_mode = 1
+anchor_left = 0.0736197
+anchor_top = 0.0978264
+anchor_right = 0.926675
+anchor_bottom = 0.874536
+offset_right = -0.0960083
+offset_bottom = 0.0859833
+metadata/_edit_use_anchors_ = true
+
+[node name="version" type="HBoxContainer" parent="ui/appinfo/list"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 0.294
+offset_right = -3.05176e-05
+offset_bottom = -0.0420799
+metadata/_edit_use_anchors_ = true
+
+[node name="label" type="Label" parent="ui/appinfo/list/version"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.3
+text = "Version:"
+label_settings = ExtResource("12_uggu5")
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="text" type="Label" parent="ui/appinfo/list/version"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.3
+text = "1.0.0.0"
+label_settings = ExtResource("12_uggu5")
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="credit" type="Control" parent="ui/appinfo/list"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.022
+anchor_top = 0.238147
+anchor_right = 1.02878
+anchor_bottom = 0.999657
+offset_left = -6.116
+offset_top = -3.05511
+offset_right = -3.05176e-05
+offset_bottom = 0.0488205
+metadata/_edit_use_anchors_ = true
+
+[node name="label" type="Label" parent="ui/appinfo/list/credit"]
+layout_mode = 2
+offset_top = 13.0
+offset_right = 92.0
+offset_bottom = 29.0
+size_flags_horizontal = 0
+text = "Design By:"
+label_settings = ExtResource("12_uggu5")
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="image" type="TextureRect" parent="ui/appinfo/list/credit"]
+layout_mode = 2
+anchor_left = 0.276224
+anchor_top = 0.35714
+anchor_right = 0.691916
+anchor_bottom = 0.928997
+offset_left = -1.0
+offset_right = 0.111984
+offset_bottom = -0.0480042
+texture = SubResource("AtlasTexture_s82sh")
+expand_mode = 1
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[connection signal="gui_input" from="ui/menu" to="." method="_on_menu_gui_input"]
+[connection signal="pressed" from="ui/setting" to="." method="_on_setting_pressed"]
+[connection signal="pressed" from="ui/scores" to="." method="_on_scores_pressed"]
+[connection signal="pressed" from="ui/settings/button/about" to="." method="_on_about_pressed"]
+[connection signal="pressed" from="ui/settings/button/close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="ui/settings/list/sound/button" to="." method="_on_volume_button_pressed"]
+[connection signal="pressed" from="ui/settings/list/sound/sfx/button" to="." method="_on_sfx_button_pressed"]
+[connection signal="released" from="ui/settings/list/control/textbutton" to="." method="_on_textbutton_released"]
+[connection signal="released" from="ui/settings/list/brightness/textbutton" to="." method="_on_brightness_textbutton_released"]
+[connection signal="pressed" from="ui/appinfo/button/close" to="." method="_on_close_pressed"]

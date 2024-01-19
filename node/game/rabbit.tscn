@@ -1,0 +1,114 @@
+[gd_scene load_steps=9 format=3 uid="uid://wcghgq5lqefe"]
+
+[ext_resource type="Script" path="res://script/node/game/rabbit.gd" id="1_fhgy6"]
+[ext_resource type="SpriteFrames" uid="uid://dqld11f8h7tfl" path="res://assets/animated/rabbit_animated.tres" id="2_2xprx"]
+[ext_resource type="Shader" path="res://assets/shader/white_shader.gdshader" id="2_hk5da"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vd43s"]
+resource_local_to_scene = true
+shader = ExtResource("2_hk5da")
+shader_parameter/whiten = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vsir"]
+size = Vector2(39, 47)
+
+[sub_resource type="Animation" id="Animation_2ecnk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:material:shader_parameter/whiten")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_dxegy"]
+resource_name = "iframe"
+length = 1.2
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_start_iframe"
+}, {
+"args": [],
+"method": &"_end_iframe"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:material:shader_parameter/whiten")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4bwiv"]
+_data = {
+"RESET": SubResource("Animation_2ecnk"),
+"iframe": SubResource("Animation_dxegy")
+}
+
+[node name="rabbit" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_layer = 2049
+collision_mask = 2055
+script = ExtResource("1_fhgy6")
+spacing = 20
+vertical_maximum_speed = 80
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_vd43s")
+sprite_frames = ExtResource("2_2xprx")
+animation = &"rabbit_east"
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -10.5)
+shape = SubResource("RectangleShape2D_1vsir")
+
+[node name="animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4bwiv")
+}

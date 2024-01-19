@@ -1,0 +1,162 @@
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://dqld11f8h7tfl"]
+
+[ext_resource type="Texture2D" uid="uid://dahfy4fjn0tw3" path="res://image/rabbit_atlas.png" id="1_1aup1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3h0yc"]
+atlas = ExtResource("1_1aup1")
+region = Rect2(0, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1oykt"]
+atlas = ExtResource("1_1aup1")
+region = Rect2(96, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovuqy"]
+atlas = ExtResource("1_1aup1")
+region = Rect2(192, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67gc5"]
+atlas = ExtResource("1_1aup1")
+region = Rect2(288, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klftk"]
+atlas = ExtResource("1_1aup1")
+region = Rect2(384, 96, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emkmu"]
+atlas = ExtResource("1_1aup1")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wiw4y"]
+atlas = ExtResource("1_1aup1")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8defy"]
+atlas = ExtResource("1_1aup1")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vu0b"]
+atlas = ExtResource("1_1aup1")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6ei2"]
+atlas = ExtResource("1_1aup1")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4p5eb"]
+atlas = ExtResource("1_1aup1")
+region = Rect2(0, 192, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0bua"]
+atlas = ExtResource("1_1aup1")
+region = Rect2(96, 192, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjgpo"]
+atlas = ExtResource("1_1aup1")
+region = Rect2(192, 192, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxs6p"]
+atlas = ExtResource("1_1aup1")
+region = Rect2(288, 192, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nse33"]
+atlas = ExtResource("1_1aup1")
+region = Rect2(384, 192, 96, 96)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3h0yc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1oykt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovuqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67gc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klftk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67gc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovuqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1oykt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3h0yc")
+}],
+"loop": true,
+"name": &"rabbit_east",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emkmu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wiw4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8defy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vu0b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6ei2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vu0b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8defy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wiw4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emkmu")
+}],
+"loop": true,
+"name": &"rabbit_south",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4p5eb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0bua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjgpo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxs6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nse33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxs6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjgpo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0bua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4p5eb")
+}],
+"loop": true,
+"name": &"rabbit_west",
+"speed": 15.0
+}]

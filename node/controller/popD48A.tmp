@@ -1,0 +1,125 @@
+[gd_scene load_steps=10 format=3 uid="uid://0fk16umj3qbc"]
+
+[ext_resource type="Texture2D" uid="uid://bb6kq8vuybb64" path="res://image/ui/panel.png" id="1_fuvgr"]
+[ext_resource type="Script" path="res://script/node/controller/popup.gd" id="1_wgfve"]
+[ext_resource type="Texture2D" uid="uid://c6usueya1jg7p" path="res://image/ui/btn_big_normal.png" id="2_rba6e"]
+[ext_resource type="Texture2D" uid="uid://tnl5uscj14vg" path="res://image/ui/btn_big_pressed.png" id="3_nruu2"]
+[ext_resource type="Texture2D" uid="uid://ce31kgrfgpahn" path="res://image/ui/btn_big_focus.png" id="4_047wo"]
+[ext_resource type="FontFile" uid="uid://deeij8pwn58ag" path="res://assets/font/Minecraft.ttf" id="5_0nugu"]
+[ext_resource type="LabelSettings" uid="uid://fpvy6tioq7i1" path="res://assets/settings/label_settings_information_value.tres" id="6_m8f6m"]
+[ext_resource type="AudioStream" uid="uid://bey7rbeuheyfo" path="res://sound/sfx/button0.ogg" id="8_1bum4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xdptb"]
+line_spacing = 2.0
+font = ExtResource("5_0nugu")
+font_size = 18
+font_color = Color(0.521569, 0.745098, 0.568627, 1)
+outline_size = 10
+outline_color = Color(0.270588, 0.156863, 0.235294, 1)
+shadow_color = Color(0.231373, 0.368627, 0.423529, 1)
+shadow_offset = Vector2(3, 3)
+
+[node name="popup" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_wgfve")
+
+[node name="outside" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="type1" type="NinePatchRect" parent="outside"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.522
+anchor_top = 0.423438
+anchor_right = 0.522
+anchor_bottom = 0.423438
+offset_left = -115.92
+offset_right = 116.08
+offset_bottom = 113.0
+texture = ExtResource("1_fuvgr")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 10
+patch_margin_bottom = 18
+metadata/_edit_use_anchors_ = true
+
+[node name="content" type="Label" parent="outside/type1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0948621
+anchor_top = 0.117172
+anchor_right = 0.900483
+anchor_bottom = 0.834793
+offset_left = -0.00800323
+offset_top = 0.00999928
+offset_right = 0.0879974
+offset_bottom = -0.0450058
+text = "Content Content Content Content"
+label_settings = ExtResource("6_m8f6m")
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="button" type="HBoxContainer" parent="outside/type1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00277778
+anchor_top = 1.05353
+anchor_right = 1.0
+anchor_bottom = 1.55
+offset_right = -1.86237
+offset_bottom = -15.1886
+theme_override_constants/separation = 10
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="btn1" type="TextureButton" parent="outside/type1/button"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture_normal = ExtResource("2_rba6e")
+texture_pressed = ExtResource("3_nruu2")
+texture_hover = ExtResource("4_047wo")
+
+[node name="label" type="Label" parent="outside/type1/button/btn1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BTN1"
+label_settings = SubResource("LabelSettings_xdptb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="btn2" type="TextureButton" parent="outside/type1/button"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture_normal = ExtResource("2_rba6e")
+texture_pressed = ExtResource("3_nruu2")
+texture_hover = ExtResource("4_047wo")
+
+[node name="label" type="Label" parent="outside/type1/button/btn2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BTN2
+"
+label_settings = SubResource("LabelSettings_xdptb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_1bum4")
+
+[connection signal="gui_input" from="outside" to="." method="_on_outside_gui_input"]
+[connection signal="pressed" from="outside/type1/button/btn1" to="." method="_on_btn_1_pressed"]
+[connection signal="pressed" from="outside/type1/button/btn2" to="." method="_on_btn_2_pressed"]
