@@ -104,6 +104,7 @@ func _on_brightness_changed(value):
 	$ui/setting.modulate = SettingsController._color_value
 	$ui/scores.modulate = SettingsController._color_value
 	$ui/settings.modulate = SettingsController._color_value
+	$ui/appinfo.modulate = SettingsController._color_value
 	
 	pass
 

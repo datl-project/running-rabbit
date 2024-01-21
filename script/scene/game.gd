@@ -141,7 +141,7 @@ func _on_sfx_changed(value):
 	pass
 
 func _on_control_changed(value):
-	$scene/rabbits.local_mouse_x_multiply = value + 2
+	$scene/rabbits.local_mouse_x_multiply = (value * 2) + 3
 	pass
 
 func _on_brightness_changed(value):

@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dqld11f8h7tfl" path="res://assets/animated/rabbit_animated.tres" id="2_2xprx"]
 [ext_resource type="Shader" path="res://assets/shader/white_shader.gdshader" id="2_hk5da"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vd43s"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m0qrw"]
 resource_local_to_scene = true
 shader = ExtResource("2_hk5da")
 shader_parameter/whiten = false
@@ -100,7 +100,7 @@ vertical_maximum_speed = 80
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
-material = SubResource("ShaderMaterial_vd43s")
+material = SubResource("ShaderMaterial_m0qrw")
 sprite_frames = ExtResource("2_2xprx")
 animation = &"rabbit_east"
 

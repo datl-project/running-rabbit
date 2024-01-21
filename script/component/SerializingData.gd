@@ -32,7 +32,8 @@ func save_local_file(path):
 		FileAccess.open(path,FileAccess.WRITE_READ)
 		
 	var file = FileAccess.open(path, FileAccess.WRITE)
-
+	if not file :
+		return
 	var data = serializing_properties()
 	
 	file.store_string(JSON.stringify(data))
@@ -46,6 +47,8 @@ func load_local_file(path):
 		FileAccess.open(path,FileAccess.WRITE_READ)
 		
 	var file = FileAccess.open(path, FileAccess.READ)
+	if not file :
+		return
 	var content = file.get_as_text()
 	print("LOAD %s content = %s" % [path,content])
 	var str = JSON.parse_string(content)

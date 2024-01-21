@@ -23,6 +23,9 @@ var popup_buttons : Array
 	set(value): SettingsController.sfx = value
 	
 func show_popup(id,handler : Callable = Callable()):
+	if SceneController.is_transitioning:
+		return
+		
 	if not (id in Popups.PopupsDefine.keys()):
 		hide_popup()
 	current_id 		= id
@@ -89,12 +92,14 @@ func _connect_signal():
 	if not SettingsController.is_node_ready():
 		await SettingsController.ready
 	SettingsController.sfx_changed.connect(_on_sfx_changed)
+	SettingsController.brightness_changed.connect(_on_brightness_changed)
 	pass
 
 func _init():
 	if not SettingsController.is_node_ready():
 		await SettingsController.ready
 	_on_sfx_changed(sfx_volume)
+	_on_brightness_changed(SettingsController.brightness)
 	
 func _on_scene_transitioning():
 	hide_popup("scene_transitioning")
@@ -117,6 +122,10 @@ func _on_sfx_changed(value):
 		$sfx.volume_db = -72
 	else:
 		$sfx.volume_db = - (3 - value) * 14
+	pass
+	
+func _on_brightness_changed(value):
+	$outside.modulate = SettingsController._color_value
 	pass
 	
 func _on_btn_1_pressed():
