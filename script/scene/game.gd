@@ -153,6 +153,10 @@ func _on_brightness_changed(value):
 	$ui/popup.modulate = SettingsController._color_value
 	pass
 
+func _on_vibration_changed(value):
+	if value:
+		Input.vibrate_handheld(100)
+
 func _on_phone_back():
 	if status == Status.RUNNING:
 		pause(Reason.PAUSE_BY_BACK)
@@ -264,6 +268,8 @@ func rabbit_eat(rabbit,carrot):
 func rabbit_kill(rabbit):
 	if not (rabbit is Rabbit):
 		return
+	if self.vibration:
+		Input.vibrate_handheld(500)
 	play_sfx("res://sound/sfx/hit0.ogg")
 	node_rabbits.despawn(rabbit)
 	check_gameover()
@@ -292,6 +298,8 @@ func _on_scoring_timer_timeout():
 
 
 func _on_ui_button_pressed(event):
+	if self.vibration :
+		Input.vibrate_handheld(100)
 	match event:
 		"quit":
 			quit_game()

@@ -46,25 +46,35 @@ func _on_menu_gui_input(event):
 		if mouse.pressed and mouse.button_index == MOUSE_BUTTON_LEFT:
 			$ui/sfx.play()
 		elif mouse.is_released() and mouse.button_index == MOUSE_BUTTON_LEFT:
+			if self.vibration :
+				Input.vibrate_handheld(100)
 			SceneController.transition_to("res://scene/game.tscn")
 	pass # Replace with function body.
 
 func _on_setting_pressed():
+	if self.vibration :
+		Input.vibrate_handheld(100)
 	$ui/sfx.play()
 	ui = "settings"
 	pass # Replace with function body.
 
 func _on_scores_pressed():
+	if self.vibration :
+		Input.vibrate_handheld(100)
 	$ui/sfx.play()
 	GooglePlayController.show_leaderboard()
 	pass # Replace with function body.
 	
 func _on_close_pressed():
+	if self.vibration :
+		Input.vibrate_handheld(100)
 	$ui/sfx.play()
 	ui = "title"
 	pass # Replace with function body.
 	
 func _on_about_pressed():
+	if self.vibration :
+		Input.vibrate_handheld(100)
 	$ui/sfx.play()
 	ui = "about"
 	pass # Replace with function body.
@@ -95,6 +105,8 @@ func _on_control_changed(value):
 	pass
 
 func _on_brightness_changed(value):
+	if self.vibration :
+		Input.vibrate_handheld(100)
 	$ui/settings/list/brightness/textbutton.text = str(self.brightness)
 	
 	$".".modulate = SettingsController._color_value
@@ -107,6 +119,11 @@ func _on_brightness_changed(value):
 	$ui/appinfo.modulate = SettingsController._color_value
 	
 	pass
+
+func _on_vibration_changed(value):
+	if value:
+		Input.vibrate_handheld(100)
+	$ui/settings/list/vibration/textbutton.text = "ON" if self.vibration else "OFF"
 
 func _on_handle_clear_all_popup(action,args):
 	if action == "btn_pressed" :
@@ -141,17 +158,29 @@ func _update_ui(type) :
 
 
 func _on_volume_button_pressed():
+	if self.vibration :
+		Input.vibrate_handheld(100)
 	self.volume += 1
 	pass # Replace with function body.
 
 func _on_sfx_button_pressed():
+	if self.vibration :
+		Input.vibrate_handheld(100)
 	self.sfx_volume += 1
 	pass # Replace with function body.
 
 func _on_textbutton_released():
+	if self.vibration :
+		Input.vibrate_handheld(100)
 	self.control += 1
 	pass # Replace with function body.
 
 func _on_brightness_textbutton_released():
+	if self.vibration :
+		Input.vibrate_handheld(100)
 	self.brightness += 1
+	pass # Replace with function body.
+
+func _on_vibration_textbutton_released():
+	self.vibration = !self.vibration
 	pass # Replace with function body.

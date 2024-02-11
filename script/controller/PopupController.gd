@@ -127,7 +127,10 @@ func _on_sfx_changed(value):
 func _on_brightness_changed(value):
 	$outside.modulate = SettingsController._color_value
 	pass
-	
+
+func _on_vibration_changed(value) :
+	pass
+
 func _on_btn_1_pressed():
 	$sfx.play()
 	_on_popup_actions("btn_pressed","btn1")

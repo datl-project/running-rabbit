@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cajcq7tx51xco"]
+[gd_scene load_steps=30 format=3 uid="uid://cajcq7tx51xco"]
 
 [ext_resource type="Script" path="res://script/scene/main_menu.gd" id="1_wyfwe"]
 [ext_resource type="PackedScene" uid="uid://bm5hxvkp06y4f" path="res://node/main_menu/background.tscn" id="2_orr25"]
@@ -40,6 +40,36 @@ line_spacing = 2.0
 font = ExtResource("4_pnc7t")
 font_size = 18
 font_color = Color(0.521569, 0.745098, 0.568627, 1)
+outline_size = 10
+outline_color = Color(0.270588, 0.156863, 0.235294, 1)
+shadow_color = Color(0.231373, 0.368627, 0.423529, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kdjp5"]
+line_spacing = 2.0
+font = ExtResource("4_pnc7t")
+font_size = 20
+font_color = Color(0.521569, 0.745098, 0.568627, 1)
+outline_size = 10
+outline_color = Color(0.270588, 0.156863, 0.235294, 1)
+shadow_color = Color(0.231373, 0.368627, 0.423529, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_e7khq"]
+line_spacing = 2.0
+font = ExtResource("4_pnc7t")
+font_size = 20
+font_color = Color(0.231373, 0.368627, 0.423529, 1)
+outline_size = 10
+outline_color = Color(0.270588, 0.156863, 0.235294, 1)
+shadow_color = Color(0.231373, 0.368627, 0.423529, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tt3vc"]
+line_spacing = 2.0
+font = ExtResource("4_pnc7t")
+font_size = 20
+font_color = Color(0.756863, 0.984314, 0.580392, 1)
 outline_size = 10
 outline_color = Color(0.270588, 0.156863, 0.235294, 1)
 shadow_color = Color(0.231373, 0.368627, 0.423529, 1)
@@ -156,7 +186,7 @@ anchors_preset = -1
 anchor_left = 0.489
 anchor_top = 0.360938
 anchor_right = 0.489
-anchor_bottom = 0.362
+anchor_bottom = 0.401062
 offset_left = -158.04
 offset_right = 167.96
 offset_bottom = 183.32
@@ -339,6 +369,29 @@ metadata/_edit_use_anchors_ = true
 [node name="textbutton" parent="ui/settings/list/brightness" instance=ExtResource("21_12k77")]
 layout_mode = 2
 
+[node name="vibration" type="HBoxContainer" parent="ui/settings/list"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_constants/separation = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="label" type="Label" parent="ui/settings/list/vibration"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+text = "Vibration:"
+label_settings = ExtResource("12_uggu5")
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="textbutton" parent="ui/settings/list/vibration" instance=ExtResource("21_12k77")]
+layout_mode = 2
+text = "OFF"
+label_settings = SubResource("LabelSettings_kdjp5")
+pressed_settings = SubResource("LabelSettings_e7khq")
+hovered_settings = SubResource("LabelSettings_tt3vc")
+
 [node name="appinfo" type="NinePatchRect" parent="ui"]
 visible = false
 anchors_preset = -1
@@ -496,4 +549,5 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="ui/settings/list/sound/sfx/button" to="." method="_on_sfx_button_pressed"]
 [connection signal="released" from="ui/settings/list/control/textbutton" to="." method="_on_textbutton_released"]
 [connection signal="released" from="ui/settings/list/brightness/textbutton" to="." method="_on_brightness_textbutton_released"]
+[connection signal="released" from="ui/settings/list/vibration/textbutton" to="." method="_on_vibration_textbutton_released"]
 [connection signal="pressed" from="ui/appinfo/button/close" to="." method="_on_close_pressed"]

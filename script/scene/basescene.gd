@@ -21,6 +21,10 @@ var initialized : bool = _initializing()
 	get : return SettingsController.brightness
 	set(value) : SettingsController.brightness = value
 
+@export var vibration : bool:
+	get : return SettingsController.vibration
+	set(value) : SettingsController.vibration = value
+
 func _initializing() -> bool:
 	if initialized :
 		return true
@@ -32,6 +36,7 @@ func _initializing() -> bool:
 	SettingsController.sfx_changed.connect(_on_sfx_changed)
 	SettingsController.control_changed.connect(_on_control_changed)
 	SettingsController.brightness_changed.connect(_on_brightness_changed)
+	SettingsController.vibration_changed.connect(_on_vibration_changed)
 	
 	AppController.phone_back.connect(_on_phone_back)
 	AppController.phone_resume.connect(_on_phone_resume)
@@ -50,6 +55,7 @@ func __parent_ready():
 	_on_sfx_changed(sfx_volume)
 	_on_control_changed(control)
 	_on_brightness_changed(brightness)
+	_on_vibration_changed(vibration)
 	return true
 
 func _on_volume_changed(value):
@@ -62,6 +68,9 @@ func _on_sfx_changed(value):
 	pass
 	
 func _on_brightness_changed(value):
+	pass
+
+func _on_vibration_changed(value):
 	pass
 
 func _on_phone_back():

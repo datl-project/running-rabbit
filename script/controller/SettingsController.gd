@@ -33,6 +33,13 @@ extends SerializingData
 		if not AppController.initialized :
 			return
 		brightness_changed.emit(value)
+@export var vibration : bool = false:
+	set(value) :
+		vibration = value
+		if not AppController.initialized :
+			return
+		vibration_changed.emit(value)
+		
 @export var version : String = "1.0.0.0"
 
 var _color_value : int :
@@ -43,12 +50,14 @@ signal volume_changed(value)
 signal sfx_changed(value)
 signal control_changed(value)
 signal brightness_changed(value)
+signal vibration_changed(value)
 
 func _ready():
 	volume_changed.connect(_on_setting_property_changed)
 	sfx_changed.connect(_on_setting_property_changed)
 	control_changed.connect(_on_setting_property_changed)
 	brightness_changed.connect(_on_setting_property_changed)
+	vibration_changed.connect(_on_setting_property_changed)
 	
 func _on_setting_property_changed(arg):
 	save_local_file	(AppController.path_local + "settings.json")
